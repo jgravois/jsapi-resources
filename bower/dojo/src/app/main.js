@@ -1,9 +1,10 @@
 define([
   "esri/map",
   "esri/dijit/Measurement",
+  "esri/layers/FeatureLayer",
   "dojo/domReady!"
 ], function (
-  Map, Measurement
+  Map, Measurement, FeatureLayer
 ) {
   var map = new Map("map-area", {
     basemap: "dark-gray",
@@ -12,6 +13,10 @@ define([
     minZoom: 7,
     maxZoom: 9
   });
+
+  var states = new FeatureLayer("http://services1.arcgis.com/4yjifSiIG17X0gW4/arcgis/rest/services/Alternative_Fuel_Stations/FeatureServer/2");
+  map.addLayer(states);
+
   map.on('load', function() {
     var measurement = new Measurement({
       map: map
